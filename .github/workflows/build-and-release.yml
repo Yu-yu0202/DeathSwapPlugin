@@ -19,7 +19,7 @@ jobs:
       with:
         java-version: '21'
         check-latest: true
-        distribution: 'adoptium'
+        distribution: 'temurin'
 
     - name: Clean
       run: mvn clean
