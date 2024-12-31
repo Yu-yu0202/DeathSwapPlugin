@@ -48,6 +48,6 @@ jobs:
     - name: Upload JAR to GitHub Release
       uses: softprops/action-gh-release@v1
       with:
-        files: DeathSwap-${VERSION}.jar
+        files: 'target/DeathSwap-${{ steps.version.outputs.version }}.jar'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
