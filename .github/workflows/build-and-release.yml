@@ -18,6 +18,8 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '21'
+        check-latest: true
+        distribution: 'adoptopenjdk'
 
     - name: Clean
       run: mvn clean
