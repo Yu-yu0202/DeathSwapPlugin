@@ -1,6 +1,7 @@
 name: Build and Release JAR
 
 on:
+  workflow_dispath:
   push:
     tags:
       - 'v*'
