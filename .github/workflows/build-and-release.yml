@@ -41,13 +41,12 @@ jobs:
 
     - name: Set JAR Path and Rename
       run: |
-        VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-        JAR_FILE="target/DeathSwap-${VERSION}.jar"
+        JAR_FILE="target/DeathSwap.jar"
         mv target/*.jar $JAR_FILE
 
     - name: Upload JAR to GitHub Release
       uses: softprops/action-gh-release@v1
       with:
-        files: 'target/DeathSwap-${{ steps.version.outputs.version }}.jar'
+        files: 'target/DeathSwap.jar'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
