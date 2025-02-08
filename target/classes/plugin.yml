@@ -1,8 +1,0 @@
-name: DeathSwap
-version: 1.0
-main: com.yuyu0202.deathswap.DeathSwap
-api-version: 1.21
-commands:
-  DeathSwap:
-    description: Manage the DeathSwap game.
-    usage: /deathswap <add|start|stop|config>

@@ -1,4 +1,0 @@
-countdown: "入れ替わりまであと%d秒..."
-start_game: "ゲーム開始！"
-stop_game: "ゲーム終了！"
-invalid_command: "コマンドの構文が正しくありません"
