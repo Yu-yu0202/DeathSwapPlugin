@@ -12,7 +12,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DeathSwap extends JavaPlugin {
+public final class DeathSwap extends JavaPlugin {
     private final Map<Player, Player> playerPairs = new HashMap<>();
     private int swapTime = 300;
     private BukkitRunnable currentTask;
@@ -34,6 +34,10 @@ public class DeathSwap extends JavaPlugin {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (command.getName().equalsIgnoreCase("deathswap")) {
             if (args.length < 1) {
+                if (args[0].toLowerCase() == "clear"){
+                    handleClearCommand(sender);
+                    return true;
+                }
                 sender.sendMessage("Usage: /deathswap <add|start|stop|config>");
                 return true;
             }
@@ -55,7 +59,7 @@ public class DeathSwap extends JavaPlugin {
                     handleDeleteCommand(sender, args);
                     break;
                 default:
-                    sender.sendMessage("Unknown subcommand. Usage: /deathswap <add|start|stop|config>");
+                    sender.sendMessage("Unknown command. Usage: /deathswap <add|start|stop|config>");
                     break;
             }
             return true;
@@ -79,6 +83,7 @@ public class DeathSwap extends JavaPlugin {
 
         playerPairs.put(player1, player2);
         sender.sendMessage(player1.getName() + " and " + player2.getName() + " are now linked for DeathSwap.");
+        return;
     }
 
     private void handleStartCommand(CommandSender sender) {
@@ -125,6 +130,7 @@ public class DeathSwap extends JavaPlugin {
         };
         currentTask.runTaskTimer(this, 0L, 20L);
         sender.sendMessage("DeathSwap started!");
+        return;
     }
 
     private void handleStopCommand(CommandSender sender) {
@@ -132,8 +138,10 @@ public class DeathSwap extends JavaPlugin {
             currentTask.cancel();
             currentTask = null;
             sender.sendMessage("DeathSwap stopped.");
+            return;
         } else {
             sender.sendMessage("There is no running DeathSwap.");
+            return;
         }
     }
 
@@ -147,8 +155,10 @@ public class DeathSwap extends JavaPlugin {
             try {
                 swapTime = Integer.parseInt(args[2]);
                 sender.sendMessage("Swap time set to " + swapTime + " seconds.");
+                return;
             } catch (NumberFormatException e) {
                 sender.sendMessage("Invalid time value.");
+                return;
             }
         }
     }
@@ -169,8 +179,27 @@ public class DeathSwap extends JavaPlugin {
                playerPairs.remove(Bukkit.getPlayer(args[2]));
            } catch (Exception exception){
                sender.sendMessage("An error has occurred");
+               getLogger().error("[DeathSwap] Command Running Error:" + exception);
+               return;
            }
        }
        sender.sendMessage("Success delete pair.");
+       return;
+    }
+
+    private void handleClearCommand(CommandSender sender) {
+        if (cureentTask != null) {
+            sender.sendMessage("This operation cannot be performed unless it is stopped");
+            return;
+        }
+        try{
+            playerPairs.Clear();
+        } catch (Exception exception){
+            sender.sendMessage("An error has occurred");
+            getLogger().error("[DeathSwap] Command Running Error:" + exception);
+            return;
+        }
+        sender.sendMessage("Success clear pair.");
+        return;
     }
 }
