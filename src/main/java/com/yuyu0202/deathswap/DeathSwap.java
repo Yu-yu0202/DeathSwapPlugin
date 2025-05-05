@@ -188,12 +188,12 @@ public final class DeathSwap extends JavaPlugin {
     }
 
     private void handleClearCommand(CommandSender sender) {
-        if (cureentTask != null) {
+        if (currentTask != null) {
             sender.sendMessage("This operation cannot be performed unless it is stopped");
             return;
         }
         try{
-            playerPairs.Clear();
+            playerPairs.clear();
         } catch (Exception exception){
             sender.sendMessage("An error has occurred");
             getLogger().error("[DeathSwap] Command Running Error:" + exception);
