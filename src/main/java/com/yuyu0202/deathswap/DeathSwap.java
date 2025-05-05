@@ -178,7 +178,7 @@ public final class DeathSwap extends JavaPlugin {
                playerPairs.remove(Bukkit.getPlayer(args[2]));
            } catch (Exception exception){
                sender.sendMessage("An error has occurred");
-               getLogger().error("[DeathSwap] Command Running Error:" + exception);
+               getLogger().serve("[DeathSwap] Command Running Error:" + exception);
                return;
            }
        }
@@ -195,7 +195,7 @@ public final class DeathSwap extends JavaPlugin {
             playerPairs.clear();
         } catch (Exception exception){
             sender.sendMessage("An error has occurred");
-            getLogger().error("[DeathSwap] Command Running Error:" + exception);
+            getLogger().serve("[DeathSwap] Command Running Error:" + exception);
             return;
         }
         sender.sendMessage("Successfully clear pair.");
