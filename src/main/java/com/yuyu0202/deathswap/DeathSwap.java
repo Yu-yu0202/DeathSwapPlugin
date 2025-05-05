@@ -34,10 +34,6 @@ public final class DeathSwap extends JavaPlugin {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         if (command.getName().equalsIgnoreCase("deathswap")) {
             if (args.length < 1) {
-                if (args[0].toLowerCase() == "clear"){
-                    handleClearCommand(sender);
-                    return true;
-                }
                 sender.sendMessage("Usage: /deathswap <add|start|stop|config>");
                 return true;
             }
@@ -57,6 +53,9 @@ public final class DeathSwap extends JavaPlugin {
                     break;
                 case "delete":
                     handleDeleteCommand(sender, args);
+                    break;
+                case "clear":
+                    handleClearCommand(sender);
                     break;
                 default:
                     sender.sendMessage("Unknown command. Usage: /deathswap <add|start|stop|config>");
@@ -183,7 +182,7 @@ public final class DeathSwap extends JavaPlugin {
                return;
            }
        }
-       sender.sendMessage("Success delete pair.");
+       sender.sendMessage("Successfully delete pair.");
        return;
     }
 
@@ -199,7 +198,7 @@ public final class DeathSwap extends JavaPlugin {
             getLogger().error("[DeathSwap] Command Running Error:" + exception);
             return;
         }
-        sender.sendMessage("Success clear pair.");
+        sender.sendMessage("Successfully clear pair.");
         return;
     }
 }
